@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SheCodes Plus Hmk 4</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+        crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Gorditas&display=swap" rel="stylesheet" />
+
+
+    <link rel="stylesheet" href="src/styles.css" />
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+</head>
+<style>
+    body {
+        font-family: "Gorditas", cursive;
+    }
+
+    h2,
+    h3 {
+        margin: 20px;
+    }
+
+    h3 {
+        background-color: palevioletred;
+    }
+
+    h5 {
+        margin: 20px;
+    }
+
+    h3 {
+        margin: 20px;
+    }
+
+    nav {
+        font-size: small;
+        color: palevioletred;
+    }
+
+    li {
+        list-style: none;
+        margin-left: 20px;
+    }
+
+    .btn-outline-success {
+        --bs-btn-color: palevioletred;
+        --bs-btn-border-color: palevoiletred;
+        --bs-btn-hover-color: pink;
+        --bs-btn-hover-bg: white;
+        --bs-btn-hover-border-color: palevioletred;
+        --bs-btn-focus-shadow-rgb: 25, 135, 84;
+        --bs-btn-active-color: #fff;
+        --bs-btn-active-bg: palevioletred;
+        --bs-btn-active-border-color: palevioletred;
+        --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+        --bs-btn-disabled-color: palevioletred;
+        --bs-btn-disabled-bg: transparent;
+        --bs-btn-disabled-border-color: palevioletred;
+        --bs-gradient: none;
+    }
+
+    .table {
+        display: block;
+        border-top: palevioletred;
+
+        border-right: palevioletred;
+        border-bottom: palevioletred;
+        border-left: palevioletred;
+        border-width: 50px;
+    }
+
+    .temperature {
+        margin: 20px;
+    }
+
+    .temperature {
+        color: rgb(33, 33, 33);
+        font-size: 64px;
+        font-weight: 400;
+        line-height: 1;
+    }
+
+    .units {
+        position: relative;
+        top: -34px;
+    }
+
+    .searcher {
+        margin-bottom: 20px;
+    }
+
+    .coloumn {
+        float: left;
+        width: 50%;
+        padding: 10px;
+    }
+
+    .left {
+        width: 50%;
+    }
+
+    .right {
+        width: 50%;
+    }
+
+    .row {
+        content: "";
+        display: table;
+        clear: both;
+    }
+</style>
+
+<body>
+    <nav class="navbar bg-body-tertiary">
+        <div class="container-fluid">
+            <div class="weather-app">
+                <form class="d-flex" role="search" id="searcher">
+                    <div class="row">
+                        <div class="col-9">
+                            <input class="form-control me-2" type="search" placeholder="Type a city..."
+                                aria-label="Search" autofocus="on" autocomplete="off" id="city-input"
+                                class="form-control shadow-sm" />
+                        </div>
+                    </div>
+                    <button class="btn btn-outline-success" type="submit" value="Search">Search</button>
+                </form>
+            </div>
+    </nav>
+    <div class="row">
+        <div class="coloumn-left">
+            <h3 id="city">Durban, KZN</h3>
+            <h2></h2>
+
+            <small id="date"> Friday 29 June </small><br />
+            <h5 id="description">
+                Mostly Sunny
+            </h5>
+        </div>
+        <div class="coloumn-right" style="background-color: palevioletred;">
+            <span class="temperature" id="temperature">20</span><span class="units">
+                <a href="#" id="celsius-link">°C</a> |
+                <a href="#" id="fahrenheit-link">°F</a>
+                <p class="location" id="location">
+                    <i class="fa-solid fa-location-dot" id="cityName"></i>
+                </p>
+
+            </span>
+        </div>
+    </div>
+
+    <br />
+
+    <div class="row">
+        <ul>
+            <li>
+                Precipitation: 5%
+            </li>
+            <li>
+                Humidity: 65%
+            </li>
+            <li>
+                Wind: 5 km/h
+            </li>
+        </ul>
+    </div>
+
+
+    <br />
+    <button class="current button" id="current-location">Current Location</button>
+    <br />
+
+
+    <br />
+    <section>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Day</th>
+                    <th scope="col">Conditions</th>
+                    <th scope="col">Degrees</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <th scope="row"></th>
+                    <td>Today</td>
+                    <td>Mostly Sunny ☀</td>
+                    <td>17°C/12°C</td>
+                </tr>
+                <tr>
+                    <th scope="row"></th>
+                    <td>Tomorrow</td>
+                    <td>Mostly Sunny ☀</td>
+                    <td>20°C/11°C</td>
+                </tr>
+                <tr>
+                    <th scope="row"></th>
+                    <td>Friday</td>
+                    <td>Mostly Sunny ☀</td>
+                    <td>24°C/15°C</td>
+                </tr>
+                <tr>
+                    <th scope="row"></th>
+                    <td>Saturday</td>
+                    <td>Partly Cloudy ⛅</td>
+                    <td>22°C/15°C</td>
+                </tr>
+                <tr>
+                    <th scope="row"></th>
+                    <td>Sunday</td>
+                    <td>Showers ⛈</td>
+                    <td>23°C/16°C</td>
+                </tr>
+                <tr>
+                    <th scope="row"></th>
+                    <td>Monday</td>
+                    <td>Rain 🌨</td>
+                    <td>21°C/17°C</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <small> <a href="https://github.com/Di-ppi/SheCodesProjects.git"> Github Repository </a> </small>
+
+    <script src="src/index.js"></script>
+</body>
+<script>
+    let currentDate = new Date();
+
+    function weatherApp(current) {
+        let months = [
+            "January",
+            "February",
+            "March",
+            "April",
+            "May",
+            "June",
+            "July",
+            "August",
+            "September",
+            "October",
+            "November",
+            "December"
+        ];
+        let days = [
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+        ];
+        let small = document.querySelector("small");
+        let day = days[currentDate.getDay()];
+        let month = months[currentDate.getMonth()];
+        let year = currentDate.getFullYear();
+        let date = currentDate.getDate();
+        let hour = currentDate.getHours();
+        if (hour < 10) {
+            hour = `0${hour}`;
+        }
+        let minutes = currentDate.getMinutes();
+        if (minutes < 10) {
+            minutes = `0${minutes}`;
+        }
+        small.innerHTML = `${day} ${date} ${month} ${year} ${hour}:${minutes}`;
+    }
+    console.log(weatherApp(currentDate));
+
+    function showWeather(response) {
+        console.log(response.data.name);
+        document.querySelector("#city").innerHTML = response.data.name;
+        document.querySelector("#temperature").innerHTML = Math.round(
+            response.data.main.temp
+        );
+        document.querySelector("#description").innerHTML =
+            response.data.weather[0].main;
+    }
+    function searchCity(city) {
+        let apiKey = "3ba25b0c83399811eaa6145cc620063d";
+        let apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+        axios.get(apiUrl).then(showWeather);
+    }
+    function search(event) {
+        event.preventDefault();
+        let city = document.querySelector("#city-input").value;
+        searchCity(city);
+    }
+
+    let form = document.querySelector("form");
+    form.addEventListener("submit", search);
+
+    function searchCurrentLocation(position) {
+        let apiKey = "3ba25b0c83399811eaa6145cc620063d";
+        let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&appid=${apiKey}&units=metric`;
+        axios.get(apiUrl).then(showWeather);
+    }
+    function currentCity(event) {
+        event.preventDefault();
+        navigator.geolocation.getCurrentPosition(searchCurrentLocation);
+    }
+    let button = document.querySelector("#current-location");
+    button.addEventListener("click", currentCity);
+
+    function convertToFahrenheit(event) {
+        event.preventDefault();
+        let temperatureElement = document.querySelector("#temperature");
+        temperatureElement.innerHTML = 57;
+    }
+    let fahrenheitLink = document.querySelector("#fahrenheit-link");
+    fahrenheitLink.addEventListener("click", convertToFahrenheit);
+
+    function convertToCelsius(event) {
+        event.preventDefault();
+        let temperatureElement = document.querySelector("#temperature");
+        temperatureElement.innerHTML = 14;
+    }
+    let celsiusLink = document.querySelector("#celsius-link");
+    celsiusLink.addEventListener("click", convertToCelsius);
+    searchCity("Durban, KZN");
+
+</script>
+
+</html>
