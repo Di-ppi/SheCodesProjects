@@ -1,0 +1,97 @@
+body {
+  font-family: "Gorditas", cursive;
+}
+
+h2,
+h3 {
+  margin: 20px;
+}
+
+h3 {
+  background-color: palevioletred;
+}
+
+h5 {
+  margin: 20px;
+}
+
+h3 {
+  margin: 20px;
+}
+
+nav {
+  font-size: small;
+  color: palevioletred;
+}
+
+li {
+  list-style: none;
+  margin-left: 20px;
+}
+
+.btn-outline-success {
+  --bs-btn-color: palevioletred;
+  --bs-btn-border-color: palevoiletred;
+  --bs-btn-hover-color: pink;
+  --bs-btn-hover-bg: white;
+  --bs-btn-hover-border-color: palevioletred;
+  --bs-btn-focus-shadow-rgb: 25, 135, 84;
+  --bs-btn-active-color: #fff;
+  --bs-btn-active-bg: palevioletred;
+  --bs-btn-active-border-color: palevioletred;
+  --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+  --bs-btn-disabled-color: palevioletred;
+  --bs-btn-disabled-bg: transparent;
+  --bs-btn-disabled-border-color: palevioletred;
+  --bs-gradient: none;
+}
+
+.table {
+  display: block;
+  border-top: palevioletred;
+
+  border-right: palevioletred;
+  border-bottom: palevioletred;
+  border-left: palevioletred;
+  border-width: 50px;
+}
+
+.temperature {
+  margin: 20px;
+}
+
+.temperature {
+  color: rgb(33, 33, 33);
+  font-size: 64px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.units {
+  position: relative;
+  top: -34px;
+}
+
+.searcher {
+  margin-bottom: 20px;
+}
+
+.coloumn {
+  float: left;
+  width: 50%;
+  padding: 10px;
+}
+
+.left {
+  width: 50%;
+}
+
+.right {
+  width: 50%;
+}
+
+.row {
+  content: "";
+  display: table;
+  clear: both;
+}
